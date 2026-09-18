@@ -1,0 +1,44 @@
+@import './reset.css';
+@import './nprogress.css';
+@import './transition.css';
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  --agri-page: #f3f7f4;
+  --agri-surface: #ffffff;
+  --agri-surface-soft: #f7faf8;
+  --agri-surface-active: #e7f0ea;
+  --agri-border: #dce5df;
+  --agri-border-strong: #bdcec3;
+  --agri-text: #1d2922;
+  --agri-text-secondary: #647168;
+  --agri-text-muted: #849087;
+  --agri-primary: #286c45;
+  --agri-primary-soft: #e5efe8;
+  --agri-warning: #b47b20;
+  --agri-danger: #b6473d;
+  --agri-canvas-dot: #d8e1db;
+}
+
+html.dark {
+  --agri-page: #111713;
+  --agri-surface: #18201b;
+  --agri-surface-soft: #1d2821;
+  --agri-surface-active: #263a2d;
+  --agri-border: #34443a;
+  --agri-border-strong: #4b6253;
+  --agri-text: #e4ece7;
+  --agri-text-secondary: #b2c0b7;
+  --agri-text-muted: #86968c;
+  --agri-primary: #67b282;
+  --agri-primary-soft: #20382a;
+  --agri-warning: #d4a24d;
+  --agri-danger: #db756c;
+  --agri-canvas-dot: #34443a;
+}

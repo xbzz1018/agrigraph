@@ -1,0 +1,2 @@
+75f17f587e60145e2da4ab3058f23b4149bfac58fb99fc72b6fb73980a6e1456  agrigraph-core-v1.zip
+2d681d151d45f8f14ef02ea7fdee22e6e4e42f39ce0e29f31ba4a1b7fc702c01  agrigraph-demo-images-v1.zip

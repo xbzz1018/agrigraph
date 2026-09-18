@@ -1,0 +1,54 @@
+# 私有配置与密钥，只允许脱敏模板进入源码。
+.env
+.env.*
+!.env.ai.example
+!/frontend/.env.example
+*.key
+*.pem
+
+# Python 缓存、覆盖率和本地虚拟环境。
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+
+# 前端依赖、构建产物和自动生成声明。
+**/node_modules/
+frontend/dist/
+frontend/.vite-ssg-dist/
+frontend/.vite-ssg-temp/
+frontend/public/languages/
+frontend/public/themes/
+frontend/package-lock.json
+frontend/yarn.lock
+
+# 运行数据库、上传降级数据、日志和临时报告。
+var/
+backend-python/var/
+backend-python/diagnosis-inputs/
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# 外部数据只保留清单和处理脚本，不提交大文件。
+data/raw/
+data/archives/
+data/processed/
+
+# 编辑器、操作系统和一次性过程文件。
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.sw?
+.qoder/
+tmp/
+task_plan.md
+findings.md
+progress.md
+CLAUDE.md

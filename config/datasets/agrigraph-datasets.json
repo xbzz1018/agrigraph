@@ -1,0 +1,89 @@
+{
+  "project": "AgriGraph",
+  "dataRoot": "F:/Datasets/AgriGraph",
+  "recommendedTotalBytes": 7076266673,
+  "datasets": [
+    {
+      "id": "vegetable-disease-kg",
+      "title": "A Dataset for Vegetable Disease Knowledge Graph Construction",
+      "doi": "10.57760/sciencedb.j00001.01681",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=ee5be19f13354176b964e3f63d2da61d",
+      "sizeBytes": 555476,
+      "license": "CC BY 4.0",
+      "targetDirectory": "raw/vegetable-disease-kg",
+      "role": "graph"
+    },
+    {
+      "id": "agricultural-knowledge",
+      "title": "Dataset after preprocessing for agricultural knowledge extraction experiment",
+      "doi": "10.57760/sciencedb.29526",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=08a72a66ff604942921aa5deb4cb5cf2",
+      "sizeBytes": 1557052,
+      "license": "CC0 1.0",
+      "targetDirectory": "raw/agricultural-knowledge",
+      "role": "rag"
+    },
+    {
+      "id": "tomato-multimodal",
+      "title": "Multimodal tomato disease dataset",
+      "doi": "10.57760/sciencedb.j00001.01797",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=ac2280adec574036b44ea2f999ef58f8",
+      "sizeBytes": 1922321179,
+      "license": "CC BY 4.0",
+      "targetDirectory": "raw/tomato-multimodal",
+      "role": "vision"
+    },
+    {
+      "id": "tomato-leaf-disease",
+      "title": "Tomato Leaf Disease Dataset",
+      "doi": "10.57760/sciencedb.agriculture.00246",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=a380b0183f5441dc944e2eaf45cb3552",
+      "sizeBytes": 1479093899,
+      "license": "CC0 1.0",
+      "targetDirectory": "raw/tomato-leaf-disease",
+      "role": "vision-optional"
+    },
+    {
+      "id": "rice-phenology",
+      "title": "A long-term, station-based dataset of rice phenology dynamics",
+      "doi": "10.57760/sciencedb.25297",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=a4614126c95940819b1b125feadf93ab",
+      "sizeBytes": 1476043519,
+      "license": "CC BY-SA 4.0",
+      "targetDirectory": "raw/rice-phenology",
+      "role": "phase-two"
+    },
+    {
+      "id": "crop-phenology-images",
+      "title": "A dataset of manually observed phenological phase images",
+      "doi": "10.57760/sciencedb.j00001.00977",
+      "detailUrl": "https://www.scidb.cn/detail?dataSetId=b64cd4208f844b94afddf49253666afc",
+      "sizeBytes": 2196695548,
+      "license": "CC BY 4.0",
+      "targetDirectory": "raw/crop-phenology-images",
+      "role": "phase-two"
+    },
+    {
+      "id": "facility-tomato-cucumber-kg",
+      "title": "Facility Tomato and Facility Cucumber Pest and Disease Knowledge Graph Construction Dataset",
+      "doi": "10.57760/sciencedb.agriculture.00155",
+      "detailUrl": "https://agri.scidb.cn/detail?dataSetId=b78386d4252343c089e69ff89676dff6&version=V2&code=o00121",
+      "sizeBytes": null,
+      "license": "CC BY 4.0",
+      "targetDirectory": "raw/agriculture-text/tomato",
+      "role": "graph-rag-primary",
+      "downloadStatus": "待下载"
+    },
+    {
+      "id": "agricultural-information-retrieval",
+      "title": "Agricultural Information Retrieval Dataset",
+      "doi": "10.57760/sciencedb.agriculture.00187",
+      "detailUrl": "https://agri.scidb.cn/detail?dataSetId=0b117cc43bf44b70ab2dc567c84641cc",
+      "sizeBytes": 5242880,
+      "license": "CC0 1.0",
+      "targetDirectory": "raw/agriculture-text/general",
+      "role": "graph-rag-primary",
+      "downloadStatus": "待下载"
+    }
+  ]
+}

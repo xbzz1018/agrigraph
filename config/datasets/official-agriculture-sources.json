@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "policy": "只下载公开、可追溯且允许本项目使用的官方资料；downloadUrl 必须人工确认后填写",
+  "sources": [
+    {
+      "id": "tomato-official-guides",
+      "category": "tomato-disease",
+      "title": "番茄主要病害与绿色防控官方资料",
+      "publishers": ["农业农村部", "全国农业技术推广服务中心", "中国农业科学院蔬菜花卉研究所", "省级农业农村厅或植保站"],
+      "keywords": ["番茄 灰霉病", "番茄 晚疫病", "番茄 早疫病", "番茄 叶霉病", "番茄 病毒病", "番茄 青枯病", "番茄 绿色防控"],
+      "targetDirectory": "raw/agriculture-text/tomato",
+      "downloadUrl": "",
+      "sourceUrl": "",
+      "license": "待人工确认",
+      "status": "待检索"
+    },
+    {
+      "id": "rice-official-guides",
+      "category": "rice-disease-pest-growth-stage",
+      "title": "水稻主要病虫害、绿色防控与生育期官方资料",
+      "publishers": ["农业农村部", "全国农业技术推广服务中心", "中国水稻研究所", "省级农业农村厅或植保站"],
+      "keywords": ["稻瘟病", "纹枯病", "稻曲病", "白叶枯病", "稻飞虱", "二化螟", "稻纵卷叶螟", "水稻 生育期"],
+      "targetDirectory": "raw/agriculture-text/rice",
+      "downloadUrl": "",
+      "sourceUrl": "",
+      "license": "待人工确认",
+      "status": "待检索"
+    },
+    {
+      "id": "pesticide-safe-use",
+      "category": "agricultural-input-safety",
+      "title": "农药登记标签、安全间隔期与科学安全用药资料",
+      "publishers": ["农业农村部", "中国农药信息网", "省级农业农村厅"],
+      "keywords": ["农药登记标签", "番茄 安全间隔期", "水稻 安全间隔期", "农药 科学安全使用"],
+      "targetDirectory": "raw/agriculture-standards/pesticide-safety",
+      "downloadUrl": "",
+      "sourceUrl": "",
+      "license": "待人工确认",
+      "status": "待检索"
+    },
+    {
+      "id": "agriculture-ontology",
+      "category": "ontology-terminology",
+      "title": "农业术语、本体和作物病害分类",
+      "publishers": ["FAO AGROVOC", "Crop Ontology", "Plant Ontology", "国家标准全文公开系统"],
+      "keywords": ["农业术语", "作物分类", "植物病害分类", "AGROVOC", "Crop Ontology", "Plant Ontology"],
+      "targetDirectory": "raw/agriculture-ontology",
+      "downloadUrl": "",
+      "sourceUrl": "",
+      "license": "待人工确认",
+      "status": "待检索"
+    }
+  ]
+}

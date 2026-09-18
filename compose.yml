@@ -1,0 +1,90 @@
+name: agrigraph-evidence-v2
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.10.4
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ports:
+      - "127.0.0.1:${AGRIGRAPH_ES_HOST_PORT:-29200}:9200"
+    volumes:
+      - agrigraph-es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+
+  neo4j:
+    image: neo4j:5.26-community
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in var/acceptance/infra.env}
+      AGRIGRAPH_HEALTH_PASSWORD: ${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in var/acceptance/infra.env}
+      NEO4J_server_memory_heap_initial__size: 256m
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 256m
+    ports:
+      - "127.0.0.1:${AGRIGRAPH_NEO4J_HTTP_HOST_PORT:-27474}:7474"
+      - "127.0.0.1:${AGRIGRAPH_NEO4J_BOLT_HOST_PORT:-27687}:7687"
+    volumes:
+      - agrigraph-neo4j-data:/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "cypher-shell -a bolt://localhost:7687 -u neo4j -p \"$$AGRIGRAPH_HEALTH_PASSWORD\" 'RETURN 1' >/dev/null || exit 1",
+        ]
+      interval: 5s
+      timeout: 8s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: agrigraph_memory
+      POSTGRES_USER: agrigraph
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in var/acceptance/infra.env}
+    ports:
+      - "127.0.0.1:${AGRIGRAPH_POSTGRES_HOST_PORT:-25432}:5432"
+    volumes:
+      - agrigraph-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agrigraph -d agrigraph_memory"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.4-alpine
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD must be set in var/acceptance/infra.env}
+    command: ["sh", "-c", "exec redis-server --appendonly yes --requirepass \"$$REDIS_PASSWORD\""]
+    ports:
+      - "127.0.0.1:${AGRIGRAPH_REDIS_HOST_PORT:-26379}:6379"
+    volumes:
+      - agrigraph-redis-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" ping | grep PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  agrigraph-es-data:
+    name: agrigraph-evidence-v2-es-data
+  agrigraph-neo4j-data:
+    name: agrigraph-evidence-v2-neo4j-data
+  agrigraph-postgres-data:
+    name: agrigraph-evidence-v2-postgres-data
+  agrigraph-redis-data:
+    name: agrigraph-evidence-v2-redis-data

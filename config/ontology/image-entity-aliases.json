@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "aliases": [
+    { "token": "番茄灰叶斑病", "entity": "番茄灰叶斑病", "usage": "DISEASE_CASE" },
+    { "token": "番茄晚疫病", "entity": "番茄晚疫病", "usage": "DISEASE_CASE" },
+    { "token": "番茄细菌性斑疹病", "entity": "番茄细菌性斑疹病", "usage": "DISEASE_CASE" },
+    { "token": "番茄叶霉病", "entity": "番茄叶霉病", "usage": "DISEASE_CASE" },
+    { "token": "early-blight", "entity": "番茄早疫病", "usage": "DISEASE_CASE" },
+    { "token": "early_blight", "entity": "番茄早疫病", "usage": "DISEASE_CASE" },
+    { "token": "late-blight", "entity": "番茄晚疫病", "usage": "DISEASE_CASE" },
+    { "token": "late_blight", "entity": "番茄晚疫病", "usage": "DISEASE_CASE" },
+    { "token": "septoria", "entity": "番茄斑枯病", "usage": "DISEASE_CASE" },
+    { "token": "leaf-mold", "entity": "番茄叶霉病", "usage": "DISEASE_CASE" },
+    { "token": "leaf_mold", "entity": "番茄叶霉病", "usage": "DISEASE_CASE" },
+    { "token": "bacterial-spot", "entity": "番茄细菌性斑点病", "usage": "DISEASE_CASE" },
+    { "token": "yellow-leaf-curl", "entity": "番茄黄化曲叶病毒病", "usage": "DISEASE_CASE" }
+  ]
+}

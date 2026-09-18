@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "nodeTypes": ["Crop", "Disease", "Pest", "Pathogen", "PathogenType", "EnvironmentFactor", "EnvironmentThreshold", "GrowthStage", "Symptom", "PlantPart", "ActiveIngredient", "BiologicalControl", "AgriculturalPractice", "OntologyConcept", "Evidence", "ImageCase", "Dataset"],
+  "relationshipTypes": ["HAS_DISEASE", "HAS_PEST", "CAUSED_BY", "IS_PATHOGEN_TYPE", "FAVORED_BY", "HAS_THRESHOLD", "HAS_GROWTH_STAGE", "HAS_SYMPTOM", "AFFECTS_PART", "OCCURS_ON", "CONTROLS", "PREVENTS", "EVIDENCED_BY", "HAS_IMAGE", "MAPS_TO_ONTOLOGY", "IS_A", "DERIVED_FROM"],
+  "symptoms": {
+    "黄化": ["黄化", "变黄", "黄色晕", "黄叶"], "褐斑": ["褐色病斑", "褐斑", "褐色斑"],
+    "黑斑": ["黑斑", "黑色病斑"], "白斑": ["白斑", "白色斑"], "萎蔫": ["萎蔫", "萎焉"],
+    "卷曲": ["卷曲", "卷缩"], "腐烂": ["腐烂", "腐败", "软腐"], "霉层": ["霉层", "霉状物"],
+    "枯死": ["枯死", "干枯"], "坏死": ["坏死"], "落叶": ["落叶"], "落果": ["落果"],
+    "白穗": ["白穗"], "枯心": ["枯心"], "矮化": ["矮化", "矮小"]
+  },
+  "plantParts": {
+    "叶片": ["叶片", "叶面", "叶背", "叶尖"], "叶柄": ["叶柄"], "叶鞘": ["叶鞘"], "茎": ["茎部", "茎秆", "茎杆"],
+    "根": ["根部", "根系", "根茎"],
+    "种子": ["种子"], "穗": ["穗部", "穗颈", "稻穗", "颖壳", "谷粒"], "节": ["节部", "节间"],
+    "幼苗": ["幼苗", "秧苗", "苗期"], "全株": ["全株", "植株"], "花": ["花器", "花瓣", "花萼", "落花"],
+    "果实": ["果实", "果面", "果柄", "落果"]
+  },
+  "environmentFactors": {
+    "高湿": ["高湿", "湿度大", "湿度过大", "相对湿度", "水膜"],
+    "高温": ["高温", "温度高"],
+    "低温": ["低温", "温度低", "春寒"],
+    "降雨": ["降雨", "多雨", "阴雨", "雨水"],
+    "寡照": ["寡照", "日照少", "光照不足"],
+    "通风不良": ["通风不良", "放风不及时", "通风不足"],
+    "连作": ["连作", "重茬"],
+    "积水": ["积水", "排水不良", "低洼"],
+    "密植": ["密植", "密度过大", "种植密度过大"],
+    "偏施氮肥": ["偏施氮肥", "氮肥过多"]
+  }
+}

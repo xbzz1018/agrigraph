@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "source": "Wikimedia Commons",
+  "targetTotal": 60,
+  "minimumTotal": 50,
+  "maximumTotal": 80,
+  "minimumPerEntity": 2,
+  "perEntityLimit": 8,
+  "targets": [
+    { "crop": "水稻", "entity": "稻瘟病", "usage": "DISEASE_CASE", "category": "Magnaporthe oryzae", "search": "rice blast disease", "requiredTerms": ["rice", "oryza", "稻"] },
+    { "crop": "水稻", "entity": "水稻纹枯病", "usage": "DISEASE_CASE", "category": "Rhizoctonia solani", "search": "rice sheath blight", "requiredTerms": ["rice", "oryza", "稻"] },
+    { "crop": "水稻", "entity": "稻曲病", "usage": "DISEASE_CASE", "category": "Ustilaginoidea virens", "search": "rice false smut", "requiredTerms": ["rice", "oryza", "稻"] },
+    { "crop": "水稻", "entity": "水稻恶苗病", "usage": "DISEASE_CASE", "category": "Gibberella fujikuroi", "search": "rice bakanae disease", "requiredTerms": ["rice", "oryza", "bakanae", "稻"] },
+    { "crop": "水稻", "entity": "水稻白叶枯病", "usage": "DISEASE_CASE", "category": "Xanthomonas oryzae", "search": "rice bacterial leaf blight", "requiredTerms": ["rice", "oryza", "稻"] },
+    { "crop": "水稻", "entity": "水稻胡麻斑病", "usage": "DISEASE_CASE", "category": "Cochliobolus miyabeanus", "search": "rice brown spot disease", "requiredTerms": ["rice", "oryza", "稻"] },
+    { "crop": "水稻", "entity": "褐飞虱", "usage": "PEST_CASE", "category": "Nilaparvata lugens", "search": "Nilaparvata lugens", "requiredTerms": ["nilaparvata lugens", "brown planthopper"] },
+    { "crop": "水稻", "entity": "白背飞虱", "usage": "PEST_CASE", "category": "Sogatella furcifera", "search": "Sogatella furcifera", "requiredTerms": ["sogatella furcifera", "white-backed planthopper"] },
+    { "crop": "水稻", "entity": "二化螟", "usage": "PEST_CASE", "category": "Chilo suppressalis", "search": "Chilo suppressalis", "requiredTerms": ["chilo suppressalis", "chilo supressalis"] },
+    { "crop": "水稻", "entity": "稻纵卷叶螟", "usage": "PEST_CASE", "category": "Cnaphalocrocis medinalis", "search": "Cnaphalocrocis medinalis" },
+    { "crop": "番茄", "entity": "番茄早疫病", "usage": "DISEASE_CASE", "category": "Alternaria solani", "search": "tomato early blight", "requiredTerms": ["tomato", "tomate", "tomaten", "tomaat", "solanum lycopersicum", "pomidor", "番茄"] },
+    { "crop": "番茄", "entity": "番茄灰霉病", "usage": "DISEASE_CASE", "category": "Botrytis cinerea", "search": "tomato gray mold Botrytis", "requiredTerms": ["tomato", "tomate", "tomaten", "tomaat", "solanum lycopersicum", "pomidor", "番茄"] },
+    { "crop": "番茄", "entity": "番茄白粉病", "usage": "DISEASE_CASE", "category": "Oidium neolycopersici", "search": "tomato powdery mildew", "requiredTerms": ["tomato", "tomate", "tomaten", "tomaat", "solanum lycopersicum", "pomidor", "番茄"] },
+    { "crop": "番茄", "entity": "烟粉虱", "usage": "PEST_CASE", "category": "Bemisia tabaci", "search": "Bemisia tabaci", "requiredTerms": ["bemisia tabaci", "silverleaf whitefly", "weiße fliegen"] },
+    { "crop": "番茄", "entity": "棉铃虫", "usage": "PEST_CASE", "category": "Helicoverpa armigera", "search": "Helicoverpa armigera", "requiredTerms": ["helicoverpa armigera", "scarce bordered straw", "cotton bollworm"] }
+  ]
+}

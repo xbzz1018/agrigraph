@@ -1,0 +1,44 @@
+{
+  "activeIngredients": [
+    {"name": "三环唑", "aliases": ["克瘟散"]},
+    {"name": "稻瘟灵", "aliases": ["富士1号"]},
+    {"name": "异稻瘟净", "aliases": []},
+    {"name": "春雷霉素", "aliases": ["加收米"]},
+    {"name": "井冈霉素", "aliases": []},
+    {"name": "三唑酮", "aliases": ["粉锈宁"]},
+    {"name": "苯醚甲环唑", "aliases": []},
+    {"name": "嘧菌酯", "aliases": []},
+    {"name": "代森锰锌", "aliases": []},
+    {"name": "百菌清", "aliases": []},
+    {"name": "甲霜灵", "aliases": []},
+    {"name": "霜霉威", "aliases": []},
+    {"name": "烯酰吗啉", "aliases": []},
+    {"name": "多菌灵", "aliases": []},
+    {"name": "甲基硫菌灵", "aliases": ["甲基托布津"]},
+    {"name": "异菌脲", "aliases": []},
+    {"name": "腐霉利", "aliases": []},
+    {"name": "氟啶胺", "aliases": []},
+    {"name": "噻菌铜", "aliases": []},
+    {"name": "噻霉酮", "aliases": []},
+    {"name": "氢氧化铜", "aliases": []},
+    {"name": "波尔多液", "aliases": []},
+    {"name": "阿维菌素", "aliases": []},
+    {"name": "甲氨基阿维菌素苯甲酸盐", "aliases": ["甲维盐"]},
+    {"name": "吡虫啉", "aliases": []},
+    {"name": "噻虫嗪", "aliases": []},
+    {"name": "氯虫苯甲酰胺", "aliases": []},
+    {"name": "茚虫威", "aliases": []},
+    {"name": "吡蚜酮", "aliases": []},
+    {"name": "螺虫乙酯", "aliases": []}
+  ],
+  "biologicalControls": [
+    {"name": "苏云金杆菌", "aliases": ["Bt制剂", "BT制剂"]},
+    {"name": "枯草芽孢杆菌", "aliases": []},
+    {"name": "木霉菌", "aliases": []},
+    {"name": "白僵菌", "aliases": []},
+    {"name": "赤眼蜂", "aliases": []}
+  ],
+  "agriculturalKeywords": [
+    "农业防治", "轮作", "清除病残体", "抗病品种", "合理密植", "通风透光", "健身栽培", "种子消毒", "水肥管理"
+  ]
+}
