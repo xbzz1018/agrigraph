@@ -1,5 +1,7 @@
 # AgriGraph Evidence QA
 
+[![Quality Gate](https://github.com/xbzz1018/agrigraph/actions/workflows/quality-gate.yml/badge.svg?branch=main)](https://github.com/xbzz1018/agrigraph/actions/workflows/quality-gate.yml)
+
 面向番茄和水稻病虫害的多模态知识服务系统，重点演示 GraphRAG、证据约束、图片症状观察和安全边界如何组合成可审计的 Agent 应用。
 
 这是一个使用公开资料独立完成的脱敏工程化项目，不包含原项目源码、内部数据、客户资料或未公开文档。系统只提供辅助知识服务，不替代现场调查、农技人员诊断或农药登记标签。
@@ -50,17 +52,14 @@ AgriGraph 解决的不是“让模型直接猜病害”，而是把农业问题�
 
 ## 配置新模型
 
-不要把 `api.txt` 复制到项目。使用本地配置脚本从指定文件生成被忽略的 `.env.ai`：
+不要把供应商配置文件、Key 或 Token 复制到项目。使用本地配置脚本从本机文件生成被忽略的 `.env.ai`：
 
 ~~~powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\dev\configure-from-api-txt.ps1 `
-  -ApiFile 'C:\Users\xzheng\Desktop\api.txt'
+  -ApiFile 'C:\path\to\provider-config.txt'
 ~~~
 
-配置映射：
-
-- DeepSeek V4 Flash：问题结构化与回答生成。
-- 阿里 Workspace qwen3-vl-flash：图片症状提取，可按需配置。
+文本模型和视觉模型都只从本地环境变量读取。公开模板不包含外部服务地址、Key、Token 或真实账号。
 
 配置完成后可运行知识数据 dry-run（只输出数量和检索模式，不输出密钥）：
 
@@ -106,7 +105,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\dev\run-automated-ac
 
 评测报告绑定数据、模型、Prompt、工具 Schema、工作流和评测器哈希。模型更换后必须重新建索引和重跑评测，不能复用旧项目指标。
 
-当前本地候选验收状态为 `COMPLETED_CANDIDATE`；原始逐样例和摘要位于被忽略的 `var/reports/`，不作为正式 Git 发布报告。
+本地候选验收报告位于被忽略的 `var/reports/`，不作为正式 Git 发布报告；模型、数据和 Provider 配置变化后必须重新验证。
+
+## 贡献与安全
+
+请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [SECURITY.md](SECURITY.md)。不要在 Issue、PR、日志或截图中提交 API Key、Token、密码、原始图片或受限资料。
 
 ## 目录
 
