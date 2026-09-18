@@ -97,7 +97,7 @@ class Settings:
             auth_required=_bool("AGRIGRAPH_AUTH_REQUIRED", True),
             jwt_secret=os.getenv("PAISMART_JWT_SECRET", ""),
             gateway_api_base=_first_nonempty(
-                "DEEPSEEK_API_BASE", "GATEWAY_API_BASE", default="https://api.deepseek.com"
+                "DEEPSEEK_API_BASE", "GATEWAY_API_BASE", default="https://api.example.invalid/v1"
             ),
             gateway_api_key=_first_nonempty("DEEPSEEK_API_KEY", "GATEWAY_API_KEY"),
             gateway_model=_first_nonempty("DEEPSEEK_MODEL", "GATEWAY_MODEL", default="deepseek-v4-flash"),

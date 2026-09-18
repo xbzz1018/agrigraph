@@ -4,7 +4,7 @@
 
 - 启动入口：`app/main.py`，运行 `conda run --no-capture-output -n AiJava python -m uvicorn app.main:app --host 127.0.0.1 --port 8188`
 - 数据迁移：`conda run -n AiJava python -m alembic upgrade head`
-- 知识导入：`conda run --no-capture-output -n AiJava python -m app.import_knowledge --data-root F:\\Datasets\\AgriGraph`
+- 知识导入：`conda run --no-capture-output -n AiJava python -m app.import_knowledge --data-root $env:AGRIGRAPH_DATA_ROOT`
 - 数据库结构：`migrations/`
 - 测试：`tests/`
 
