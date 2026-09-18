@@ -42,7 +42,7 @@
     "clipboard": "2.0.11",
     "dayjs": "1.11.23",
     "defu": "6.1.7",
-    "echarts": "5.6.0",
+    "echarts": "6.1.0",
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.12.0",
     "json5": "2.2.3",
@@ -62,7 +62,7 @@
   "devDependencies": {
     "@elegant-router/vue": "0.3.8",
     "@iconify/json": "2.2.528",
-    "@iconify/utils": "2.3.0",
+    "@iconify/utils": "3.1.7",
     "@sa/scripts": "workspace:*",
     "@sa/uno-preset": "workspace:*",
     "@soybeanjs/eslint-config": "1.7.5",
@@ -98,5 +98,11 @@
     "vite-plugin-vue-devtools": "7.7.6",
     "vue-eslint-parser": "10.4.1",
     "vue-tsc": "2.2.10"
+  },
+  "pnpm": {
+    "overrides": {
+      "lodash": "4.18.1",
+      "lodash-es": "4.18.1"
+    }
   }
 }
