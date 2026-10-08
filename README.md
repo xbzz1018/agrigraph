@@ -4,6 +4,15 @@
 
 这是一个使用公开资料独立完成的脱敏工程化项目，不包含原项目源码、内部数据、客户资料或未公开文档。系统只提供辅助知识服务，不替代现场调查、农技人员诊断或农药登记标签。
 
+## 阅读路径
+
+| 想了解什么 | 从这里开始 |
+| --- | --- |
+| 工作流和证据边界 | [系统架构](docs/architecture.md) |
+| 本地启动与依赖 | [运行手册](docs/runbook.md) |
+| 评测指标和失败条件 | [评测说明](docs/evaluation/rag-evaluation.md) |
+| 已发现的问题与修复 | [验收记录](docs/acceptance/issues-and-fixes.md) |
+
 ## 项目定位
 
 AgriGraph 解决的不是“让模型直接猜病害”，而是把农业问题拆成可检查的观察、检索、图谱解释和引用回答：
@@ -54,8 +63,10 @@ AgriGraph 解决的不是“让模型直接猜病害”，而是把农业问题�
 
 ~~~powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\dev\configure-from-api-txt.ps1 `
-  -ApiFile 'C:\Users\xzheng\Desktop\api.txt'
+  -ApiFile 'C:\path\to\api.txt'
 ~~~
+
+将示例路径替换为本机文件的绝对路径，不要把该文件提交到仓库。
 
 配置映射：
 
