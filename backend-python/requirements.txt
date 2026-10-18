@@ -11,7 +11,7 @@ PyJWT==2.13.0
 bcrypt==5.0.0
 neo4j==6.2.0
 psycopg[binary]==3.2.9
-redis==6.4.0
+redis==8.1.0
 python-multipart==0.0.22
 python-dotenv==1.2.2
 pytest==9.1.1
