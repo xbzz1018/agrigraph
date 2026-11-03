@@ -22,6 +22,7 @@ def test_memory_excludes_current_user_message(settings, repository):
         owner="tester",
         thread_id=session["id"],
         current_objective="田间湿度很高",
+        project_scope=settings.memory_project_scope,
         limit=6,
     )
 
