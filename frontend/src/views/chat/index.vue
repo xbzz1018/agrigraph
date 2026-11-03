@@ -6,9 +6,12 @@ import UserAvatar from '@/layouts/modules/global-header/components/user-avatar.v
 import AgentTimeline from '@/components/agent/agent-timeline.vue';
 import type { AgentTraceEvent } from '@/components/agent/agent-timeline.vue';
 import { postSse } from '@/utils/sse';
+import type { RetrievalMode, RetrievalResultEvent, RetrievalSummary } from '@/utils/retrieval';
 
 interface RetrievalStats { documentCount: number; graphNodeCount: number; graphEdgeCount: number }
 interface AnswerData {
+  retrievalMode?: RetrievalMode;
+  retrieval?: RetrievalSummary;
   answer: string; grounded: boolean; degraded: boolean;
   warnings: string[]; workflow: string[]; modelUsed: string; generationMode: string;
   answerMode: string; coverageStatus: string;
@@ -146,13 +149,22 @@ async function sendQuestion(value = question.value) {
           loadingLabel.value = data.label || 'Agent 正在协作';
         }
         if (event === 'route_decision') loadingLabel.value = data.label || '正在判断问题范围';
+        if (event === 'retrieval_result' && assistant?.answer) {
+          const retrieval = data as RetrievalResultEvent;
+          assistant.answer.retrievalMode = retrieval.mode;
+          assistant.answer.retrieval = {
+            mode: retrieval.mode,
+            degraded: retrieval.degraded,
+            degradationReasons: retrieval.degradationReasons
+          };
+        }
         if (event === 'workflow' || event === 'retrieval_result') {
           loadingLabel.value = data.label || '正在处理';
           const state = data.data?.state;
           if (state && assistant?.answer && !assistant.answer.workflow.includes(state)) assistant.answer.workflow.push(state);
         }
         if (event === 'answer_chunk' && assistant) assistant.content += String(data.data || '');
-        if (event === 'complete' && assistant?.answer) Object.assign(assistant.answer, data.data || {});
+        if (event === 'complete' && assistant?.answer) Object.assign(assistant.answer, data.data || data);
         if (event === 'message_saved' && assistant) Object.assign(assistant, data);
         if (event === 'error') throw new Error(data.message || '流式问答失败');
         nextTick(() => scrollToBottom());

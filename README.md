@@ -48,6 +48,13 @@ AgriGraph 解决的不是“让模型直接猜病害”，而是把农业问题�
 - Run、Step、工具轨迹、Token 和延迟审计。
 - 文本、图片症状和防治关系三组评测。
 
+检索契约：`/api/v1/health` 的 `retrievalMode` 表示配置策略（`bm25` 或
+`bm25_conditional_rerank`），`rerankerConfigured` 仅表示配置存在。
+每次 SSE `retrieval_result` 及最终结果的 `retrieval` 则根据实际证据返回
+`none`、`bm25` 或 `bm25_rerank`，并附带 `degraded` 和稳定错误码。
+重排服务异常/空结果时保留 BM25 顺序，明确标记降级；不把外部响应原文写入事件。
+这些路径由 Fake/contract 测试验证，配置状态不能代替真实模型或外部服务验收。
+
 ## 环境
 
 - Conda AiJava，Python 3.10.19。
