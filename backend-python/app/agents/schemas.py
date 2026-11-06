@@ -66,6 +66,36 @@ class AgentState(TypedDict, total=False):
     tool_calls: Annotated[int, operator.add]
 
 
+class RetrievalSummary(BaseModel):
+    mode: Literal["none", "bm25", "bm25_rerank"] = "none"
+    degraded: bool = False
+    degradationReasons: list[str] = Field(default_factory=list)
+
+
+def summarize_retrieval(documents: list[dict[str, Any]]) -> RetrievalSummary:
+    """Expose only actual evidence metadata and stable, non-sensitive reason codes."""
+    if not documents:
+        return RetrievalSummary()
+    metadata = [item.get("metadata", {}).get("retrieval", {}) for item in documents]
+    degraded = any(item.get("degraded", False) for item in metadata)
+    reasons = {
+        item.get("reason") if item.get("reason") in {"RERANK_EMPTY", "RERANK_FAILED"}
+        else "RETRIEVAL_DEGRADED"
+        for item in metadata if item.get("degraded", False)
+    }
+    return RetrievalSummary(
+        mode="bm25_rerank" if any(item.get("mode") == "bm25_rerank" for item in metadata) else "bm25",
+        degraded=degraded,
+        degradationReasons=sorted(reasons),
+    )
+
+
+class RetrievalResultEvent(RetrievalSummary):
+    candidateCount: int
+    citationCount: int
+    graphRelationCount: int
+
+
 class AgentRunResult(BaseModel):
     answer: str
     candidateEntities: list[dict[str, Any]] = Field(default_factory=list)
@@ -79,4 +109,11 @@ class AgentRunResult(BaseModel):
     agentRunId: str
     workflow: list[str] = Field(default_factory=list)
     tokenUsage: dict[str, Any] = Field(default_factory=dict)
-    retrievalMode: Literal["bm25"] = "bm25"
+    retrievalMode: Literal["none", "bm25", "bm25_rerank"] = "none"
+    retrieval: RetrievalSummary = Field(default_factory=RetrievalSummary)
+
+
+class AgentRunResponse(BaseModel):
+    code: int = 200
+    message: str = "success"
+    data: AgentRunResult

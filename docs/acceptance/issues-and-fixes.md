@@ -32,12 +32,18 @@
 
 **验证：** 防治抽取和回答边界测试覆盖典型中文表达，剂量信息泄漏率要求为 0。
 
-## 4. 技术组件过多导致定位不清
+## 4. 可选组件与当前运行依赖混淆
 
-**问题：** 旧实现同时维护向量检索、混合融合、Reranker、对象存储、组织标签和治理流程，农业知识主线不突出，运行依赖也更难复现。
+**问题：** 旧记录写着已移除 Redis 和 Reranker、只需 Elasticsearch 与 Neo4j，与当前代码和启动脚本不符。
 
-**根因：** 把可选增强能力误当成项目核心能力。
+**解决：** 当前业务链路使用 Elasticsearch BM25、症状/条件问题的可选 Reranker、Neo4j、固定 LangGraph、SQLite 与 Vue。Redis 短期记忆和 PostgreSQL/ES 长期记忆属于上下文层；外部 Embedding 只服务记忆检索，不改变文档 BM25 的证据角色。不恢复对象存储、治理审批或额外自由编排 Agent。
 
-**解决：** 收缩为 DeepSeek + Qwen3-VL、Elasticsearch BM25、Neo4j、LangGraph、SQLite 和 Vue 3；移除 Embedding、RRF/MMR、Reranker、MinIO、Redis、治理审批和额外 Agent。保留图谱是因为它直接承担农业关系组织和解释，而不是为了堆叠技术名词。
+**验证：** 架构、运行手册和首页统一列出 Elasticsearch、Neo4j、PostgreSQL、Redis 的启动依赖；上下文仍不进入事实引用。
 
-**验证：** 新建库 Alembic、Ruff、后端测试、前端 typecheck/build 和 Compose 配置均通过；运行只需 Elasticsearch 与 Neo4j。
+## 5. 重排执行结果被固定的 BM25 标记覆盖
+
+**问题：** SSE 固定报告 `bm25`，健康检查也缺少配置策略与实际运行的区别。
+
+**解决：** 健康检查报告配置策略；运行结果从文档证据汇总 `none / bm25 / bm25_rerank`，附 `degraded` 和稳定原因码。重排 HTTP 失败/空结果回退 BM25 顺序；外部响应正文不进入事件。前端事件类型及 `complete` 的直接载荷同步处理。
+
+**验证：** [检索契约测试](../../backend-python/tests/agents/test_retrieval_contract.py)覆盖服务边界、SSE/最终结果与 OpenAPI；[离线案例](../../examples/evidence-case/README.md)通过完整工作流检查五条路径。它们不代替真实服务验收。

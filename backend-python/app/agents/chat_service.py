@@ -8,7 +8,7 @@ from collections.abc import Iterator
 from typing import Any
 
 from app.agents.chat_graph import MainAgentGraph
-from app.agents.schemas import AgentEvent, AgentRunResult, AgentState
+from app.agents.schemas import AgentEvent, AgentRunResult, AgentState, RetrievalResultEvent, summarize_retrieval
 from app.api.schemas import ChatRequest
 from app.repositories import Repository
 from app.repositories.memory import LayeredMemory
@@ -104,12 +104,12 @@ class AgentService:
             duration = int((time.perf_counter() - started) * 1000)
             result = self._result(last_state, run_id, duration)
             self.repository.runs.finish_run(run_id, "COMPLETED", result, duration)
-            yield "retrieval_result", {
-                "candidateCount": len(result["candidateEntities"]),
-                "citationCount": len(result["citations"]),
-                "graphRelationCount": len(result["graphRelations"]),
-                "mode": "bm25",
-            }
+            yield "retrieval_result", RetrievalResultEvent(
+                **result["retrieval"],
+                candidateCount=len(result["candidateEntities"]),
+                citationCount=len(result["citations"]),
+                graphRelationCount=len(result["graphRelations"]),
+            ).model_dump()
             for chunk in self._chunks(result["answer"]):
                 yield "answer_chunk", {"data": chunk}
             yield "complete", result
@@ -178,6 +178,7 @@ class AgentService:
         citation_ids = set(state.get("citation_ids", []))
         documents = state.get("document_evidence", [])
         graph = state.get("graph_evidence", [])
+        retrieval = summarize_retrieval(documents)
         result = AgentRunResult(
             answer=state.get("final_answer") or state.get("draft_answer") or "当前无法生成回答。",
             candidateEntities=state.get("candidate_entities", []),
@@ -201,6 +202,8 @@ class AgentService:
             agentRunId=run_id,
             workflow=list(dict.fromkeys(state.get("workflow", []))),
             tokenUsage=state.get("model_usage", {}),
+            retrievalMode=retrieval.mode,
+            retrieval=retrieval,
         )
         return result.model_dump()
 

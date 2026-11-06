@@ -1,0 +1,398 @@
+{
+  "kind": "OFFLINE_SYNTHETIC_DEMO",
+  "externalServices": "FixtureRetriever / FixtureModel / graph fixture / httpx.MockTransport",
+  "sourceTextSha256": {
+    "scripts/demo/run-evidence-case.py": "7e9a5c801370d1afc778adad17fa8e6a9bcc57107ed3299a49fffac4c0ad86dd",
+    "examples/evidence-case/fixture.json": "aa60aae5e1f5546e04683d2c65d82aa14c32112bfd4daf1d1f3acf3d38bedc20",
+    "backend-python/app/agents/chat_graph.py": "b94618cf8ac24d8a98d2be0eed2ef09df1282d56aef6468e6471e47a663d060d",
+    "backend-python/app/agents/chat_service.py": "cfa721e0ebaada66479ffa382bc3827485399d7b19f46d82b34b29821bef8a09",
+    "backend-python/app/agents/runtime.py": "cc086b78b0203cea710417de933e3f79023b955f5fbe8dadeeb9b2ad631c8f42",
+    "backend-python/app/agents/schemas.py": "e4a9dcfb0b734e6e280661379452ae9fbc6c4d82fdcbfbb889dbd4e74be7a65b",
+    "backend-python/app/agents/tools.py": "16bbf2faa84171bf65022ea5e816b779f2db67efe84dcfa8733794e7756574c8",
+    "backend-python/app/integrations/semantic.py": "eef45c6a5f74b04f86d1b730ba0ddebe6d22b584a6b03f3b9b20506c693f1eaa"
+  },
+  "scenarios": [
+    {
+      "scenario": "bm25",
+      "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+      "eventTypes": [
+        "connected",
+        "workflow",
+        "retrieval_result",
+        "answer_chunk",
+        "complete"
+      ],
+      "retrievalEvent": {
+        "mode": "bm25",
+        "degraded": false,
+        "degradationReasons": [],
+        "candidateCount": 2,
+        "citationCount": 1,
+        "graphRelationCount": 1
+      },
+      "result": {
+        "answer": "叶片可见褐色斑点。[doc:demo-a]",
+        "candidateEntities": [
+          {
+            "id": "demo-a",
+            "name": "演示候选 A（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          },
+          {
+            "id": "demo-b",
+            "name": "演示候选 B（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          }
+        ],
+        "claims": [
+          {
+            "text": "叶片可见褐色斑点",
+            "evidenceIds": [
+              "doc:demo-a"
+            ],
+            "supported": true
+          }
+        ],
+        "citations": [
+          {
+            "id": "doc:demo-a",
+            "title": "演示候选 A（合成）",
+            "excerpt": "叶片可见褐色斑点。",
+            "score": 0.9,
+            "url": null
+          }
+        ],
+        "graphRelations": [
+          {
+            "sourceId": "demo-a",
+            "source": "演示候选 A（合成）",
+            "relation": "HAS_SYMPTOM",
+            "targetId": "demo-symptom",
+            "target": "褐色斑点"
+          }
+        ],
+        "warnings": [
+          "已移除缺少直接证据支持的陈述"
+        ],
+        "workflow": [
+          "SESSION_CONTEXT",
+          "QUERY_ROUTER",
+          "DOCUMENT_RESEARCH",
+          "GRAPH_REASONING",
+          "ANSWER",
+          "EVIDENCE_CHECK",
+          "OUTPUT_BOUNDARY",
+          "COMPLETE"
+        ],
+        "retrieval": {
+          "mode": "bm25",
+          "degraded": false,
+          "degradationReasons": []
+        }
+      }
+    },
+    {
+      "scenario": "rerank",
+      "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+      "eventTypes": [
+        "connected",
+        "workflow",
+        "retrieval_result",
+        "answer_chunk",
+        "complete"
+      ],
+      "retrievalEvent": {
+        "mode": "bm25_rerank",
+        "degraded": false,
+        "degradationReasons": [],
+        "candidateCount": 2,
+        "citationCount": 1,
+        "graphRelationCount": 1
+      },
+      "result": {
+        "answer": "叶片可见褐色斑点。[doc:demo-a]",
+        "candidateEntities": [
+          {
+            "id": "demo-b",
+            "name": "演示候选 B（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.95
+          },
+          {
+            "id": "demo-a",
+            "name": "演示候选 A（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.6
+          }
+        ],
+        "claims": [
+          {
+            "text": "叶片可见褐色斑点",
+            "evidenceIds": [
+              "doc:demo-a"
+            ],
+            "supported": true
+          }
+        ],
+        "citations": [
+          {
+            "id": "doc:demo-a",
+            "title": "演示候选 A（合成）",
+            "excerpt": "叶片可见褐色斑点。",
+            "score": 0.6,
+            "url": null
+          }
+        ],
+        "graphRelations": [
+          {
+            "sourceId": "demo-a",
+            "source": "演示候选 A（合成）",
+            "relation": "HAS_SYMPTOM",
+            "targetId": "demo-symptom",
+            "target": "褐色斑点"
+          }
+        ],
+        "warnings": [
+          "已移除缺少直接证据支持的陈述"
+        ],
+        "workflow": [
+          "SESSION_CONTEXT",
+          "QUERY_ROUTER",
+          "DOCUMENT_RESEARCH",
+          "GRAPH_REASONING",
+          "ANSWER",
+          "EVIDENCE_CHECK",
+          "OUTPUT_BOUNDARY",
+          "COMPLETE"
+        ],
+        "retrieval": {
+          "mode": "bm25_rerank",
+          "degraded": false,
+          "degradationReasons": []
+        }
+      }
+    },
+    {
+      "scenario": "rerank_failed",
+      "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+      "eventTypes": [
+        "connected",
+        "workflow",
+        "retrieval_result",
+        "answer_chunk",
+        "complete"
+      ],
+      "retrievalEvent": {
+        "mode": "bm25",
+        "degraded": true,
+        "degradationReasons": [
+          "RERANK_FAILED"
+        ],
+        "candidateCount": 2,
+        "citationCount": 1,
+        "graphRelationCount": 1
+      },
+      "result": {
+        "answer": "叶片可见褐色斑点。[doc:demo-a]",
+        "candidateEntities": [
+          {
+            "id": "demo-a",
+            "name": "演示候选 A（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          },
+          {
+            "id": "demo-b",
+            "name": "演示候选 B（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          }
+        ],
+        "claims": [
+          {
+            "text": "叶片可见褐色斑点",
+            "evidenceIds": [
+              "doc:demo-a"
+            ],
+            "supported": true
+          }
+        ],
+        "citations": [
+          {
+            "id": "doc:demo-a",
+            "title": "演示候选 A（合成）",
+            "excerpt": "叶片可见褐色斑点。",
+            "score": 0.9,
+            "url": null
+          }
+        ],
+        "graphRelations": [
+          {
+            "sourceId": "demo-a",
+            "source": "演示候选 A（合成）",
+            "relation": "HAS_SYMPTOM",
+            "targetId": "demo-symptom",
+            "target": "褐色斑点"
+          }
+        ],
+        "warnings": [
+          "已移除缺少直接证据支持的陈述"
+        ],
+        "workflow": [
+          "SESSION_CONTEXT",
+          "QUERY_ROUTER",
+          "DOCUMENT_RESEARCH",
+          "GRAPH_REASONING",
+          "ANSWER",
+          "EVIDENCE_CHECK",
+          "OUTPUT_BOUNDARY",
+          "COMPLETE"
+        ],
+        "retrieval": {
+          "mode": "bm25",
+          "degraded": true,
+          "degradationReasons": [
+            "RERANK_FAILED"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "rerank_empty",
+      "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+      "eventTypes": [
+        "connected",
+        "workflow",
+        "retrieval_result",
+        "answer_chunk",
+        "complete"
+      ],
+      "retrievalEvent": {
+        "mode": "bm25",
+        "degraded": true,
+        "degradationReasons": [
+          "RERANK_EMPTY"
+        ],
+        "candidateCount": 2,
+        "citationCount": 1,
+        "graphRelationCount": 1
+      },
+      "result": {
+        "answer": "叶片可见褐色斑点。[doc:demo-a]",
+        "candidateEntities": [
+          {
+            "id": "demo-a",
+            "name": "演示候选 A（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          },
+          {
+            "id": "demo-b",
+            "name": "演示候选 B（合成）",
+            "crop": "番茄",
+            "type": "",
+            "score": 0.9
+          }
+        ],
+        "claims": [
+          {
+            "text": "叶片可见褐色斑点",
+            "evidenceIds": [
+              "doc:demo-a"
+            ],
+            "supported": true
+          }
+        ],
+        "citations": [
+          {
+            "id": "doc:demo-a",
+            "title": "演示候选 A（合成）",
+            "excerpt": "叶片可见褐色斑点。",
+            "score": 0.9,
+            "url": null
+          }
+        ],
+        "graphRelations": [
+          {
+            "sourceId": "demo-a",
+            "source": "演示候选 A（合成）",
+            "relation": "HAS_SYMPTOM",
+            "targetId": "demo-symptom",
+            "target": "褐色斑点"
+          }
+        ],
+        "warnings": [
+          "已移除缺少直接证据支持的陈述"
+        ],
+        "workflow": [
+          "SESSION_CONTEXT",
+          "QUERY_ROUTER",
+          "DOCUMENT_RESEARCH",
+          "GRAPH_REASONING",
+          "ANSWER",
+          "EVIDENCE_CHECK",
+          "OUTPUT_BOUNDARY",
+          "COMPLETE"
+        ],
+        "retrieval": {
+          "mode": "bm25",
+          "degraded": true,
+          "degradationReasons": [
+            "RERANK_EMPTY"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "no_evidence",
+      "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+      "eventTypes": [
+        "connected",
+        "workflow",
+        "retrieval_result",
+        "answer_chunk",
+        "complete"
+      ],
+      "retrievalEvent": {
+        "mode": "none",
+        "degraded": false,
+        "degradationReasons": [],
+        "candidateCount": 0,
+        "citationCount": 0,
+        "graphRelationCount": 0
+      },
+      "result": {
+        "answer": "当前证据不足，无法形成可靠的农业知识回答。",
+        "candidateEntities": [],
+        "claims": [],
+        "citations": [],
+        "graphRelations": [],
+        "warnings": [],
+        "workflow": [
+          "SESSION_CONTEXT",
+          "QUERY_ROUTER",
+          "DOCUMENT_RESEARCH",
+          "GRAPH_REASONING",
+          "ANSWER",
+          "EVIDENCE_CHECK",
+          "OUTPUT_BOUNDARY",
+          "COMPLETE"
+        ],
+        "retrieval": {
+          "mode": "none",
+          "degraded": false,
+          "degradationReasons": []
+        }
+      }
+    }
+  ]
+}

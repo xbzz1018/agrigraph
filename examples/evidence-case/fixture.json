@@ -1,0 +1,11 @@
+{
+  "kind": "SYNTHETIC_DEMO_FIXTURE",
+  "question": "番茄叶片出现褐色斑点，应如何查找依据？",
+  "documents": [
+    {"id": "demo-a", "name": "演示候选 A（合成）", "crop": "番茄", "symptoms": "叶片可见褐色斑点。"},
+    {"id": "demo-b", "name": "演示候选 B（合成）", "crop": "番茄", "symptoms": "叶片可见黄色斑点。"}
+  ],
+  "graphRelations": [
+    {"sourceId": "demo-a", "source": "演示候选 A（合成）", "relation": "HAS_SYMPTOM", "targetId": "demo-symptom", "target": "褐色斑点"}
+  ]
+}

@@ -409,7 +409,7 @@ class AgricultureDomain:
                     "score": float(hit.get("_score") or 0),
                     "datasetId": str(source.get("datasetId") or source.get("dataset_id") or ""),
                     "doi": str(source.get("doi") or ""),
-                    "retrievalMode": "bm25",
+                    "retrievalMode": str(retrieval.get("mode") or "bm25"),
                     "degraded": bool(retrieval.get("degraded", False)),
                     "degradationReason": str(retrieval.get("reason") or ""),
                     "rank": int(retrieval.get("rank") or 0),

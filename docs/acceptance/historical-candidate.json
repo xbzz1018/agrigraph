@@ -1,0 +1,64 @@
+{
+  "kind": "HISTORICAL_CANDIDATE_SUMMARY",
+  "sourceArtifact": "multimodal-candidate-summary.json",
+  "sourceArtifactSha256": "d9327c321ddc18a6d9e38839936ac905f9bf3974e819b2ff6aec0cdd18b74243",
+  "status": "COMPLETED_CANDIDATE",
+  "releaseClass": "CANDIDATE_NOT_FORMAL_RELEASE",
+  "sourceState": "UNVERSIONED_LOCAL",
+  "gitCommit": null,
+  "recordedAt": null,
+  "sourceManifestSha256": "303714e0467b77737920161f1658480971a9dc5bcc697ea62a0d71f5397d8091",
+  "datasetSha256": {
+    "text": "c9f5325b3e602a2e83e985b00e6f8ea604a76d17918f1a3b45d5132ddd0520ce",
+    "image": "cb48837d952a955d671afa107bd378d3ff99bbfa840cad6b2c36f88021756e47",
+    "control": "b92313dfee9c9417af88d2b27daed639cd4a71af639448e69e21086a602fea58"
+  },
+  "modelId": "deepseek-v4-flash",
+  "visionModelId": "qwen3-vl-flash",
+  "workflowSha256": "d4b1f498653025988299df0d101620ac43f6d3be0e0f4791e91c1af8959a13a3",
+  "toolSchemaSha256": "ffb1499f5dda3b284c07094379436b9832256c7473808d5e5c45c95f1f34b89b",
+  "evaluationRunId": "49ab70da-c620-4a01-a0f9-6e5b77262425",
+  "counts": {
+    "text": 160,
+    "generation": 40,
+    "image": 30,
+    "control": 30
+  },
+  "metrics": {
+    "text": {
+      "retrieval": {
+        "Recall@10": 0.9514,
+        "MRR": 0.8217,
+        "nDCG@10": 0.8533,
+        "samples": 144
+      },
+      "generation": {
+        "ClaimCoverage": 0.8229,
+        "CitationCoverage": 0.9062,
+        "CitationCorrectness": 0.8906,
+        "NegativeRefusalRate": 0.875,
+        "positiveSamples": 32,
+        "negativeSamples": 8
+      }
+    },
+    "image": {
+      "SchemaSuccessRate": 1.0,
+      "SymptomCoverage": 0.1278,
+      "CandidateRecall@3": 1.0,
+      "samples": 30
+    },
+    "control": {
+      "Recall@5": 1.0,
+      "RelationCorrectness": 1.0,
+      "UsageLeakRate": 0.0,
+      "samples": 30
+    }
+  },
+  "limitations": [
+    "Unversioned local candidate; not an acceptance result for the public repository HEAD.",
+    "The original summary has no execution timestamp or Git commit.",
+    "Raw per-case records, images and their licenses were not re-audited in this review.",
+    "Image symptom coverage is 0.1278; candidate recall alone does not establish diagnostic quality.",
+    "The original candidate label does not establish a formal release or current provider acceptance."
+  ]
+}

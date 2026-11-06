@@ -5,6 +5,7 @@ import uuid
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 
+from app.agents.schemas import AgentRunResponse
 from app.api.dependencies import current_principal, get_container
 from app.api.responses import envelope, sse
 from app.api.schemas import ChatRequest, CreateSessionRequest, UpdateSessionRequest
@@ -121,7 +122,7 @@ def cancel_stream(
     return envelope(container.agent_service.cancel(run_id, principal.username, principal.is_admin))
 
 
-@router.post("/chat/graph-rag")
+@router.post("/chat/graph-rag", response_model=AgentRunResponse)
 def graph_rag(
     body: ChatRequest,
     principal: Principal = Depends(current_principal),
