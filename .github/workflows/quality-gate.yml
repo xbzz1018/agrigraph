@@ -73,6 +73,9 @@ jobs:
       - name: Install frontend dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Test request cancellation
+        run: pnpm test:request
+
       - name: Type-check frontend
         run: pnpm typecheck
 
