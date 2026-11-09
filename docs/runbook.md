@@ -18,6 +18,8 @@ Compose 启动 Elasticsearch、Neo4j、PostgreSQL 和 Redis，默认端口分别
 
 ## 依赖和数据
 
+后端保持 Python 3.10，SQLAlchemy 约束在兼容的 2.0 系列，`python-multipart` 使用 0.0.32；Dependabot 暂不提议需要 Python 3.11 的 SQLAlchemy 2.1 和 `python-multipart` 0.0.33 及后续版本。升级 Python 后应重新评估这些排除项。更新依赖后先执行 `python -m pip check`、离线测试和 SQLite 迁移检查，再执行真实服务验收。
+
 ```powershell
 $env:AGRIGRAPH_DATA_ROOT = 'C:\path\to\public-datasets'
 Push-Location backend-python
