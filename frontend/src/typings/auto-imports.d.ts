@@ -111,6 +111,7 @@ declare global {
   const postSse: typeof import('../utils/sse')['postSse']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
+  const readJsonSse: typeof import('../utils/sse-stream')['readJsonSse']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
   const request: typeof import('@/service/request')['request']
@@ -200,6 +201,9 @@ declare global {
   // @ts-ignore
   export type { SetupStoreId, UploadStatus } from '../enum/index'
   import('../enum/index')
+  // @ts-ignore
+  export type { RetrievalMode, RetrievalSummary, RetrievalResultEvent } from '../utils/retrieval'
+  import('../utils/retrieval')
   // @ts-ignore
   export type { SseMessage } from '../utils/sse'
   import('../utils/sse')
