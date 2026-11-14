@@ -76,6 +76,9 @@ jobs:
       - name: Test request cancellation
         run: pnpm test:request
 
+      - name: Test SSE chunk boundaries
+        run: pnpm test:sse
+
       - name: Type-check frontend
         run: pnpm typecheck
 
