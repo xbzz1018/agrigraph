@@ -220,8 +220,8 @@ importers:
         specifier: 4.5.0
         version: 4.5.0(axios@1.9.0(debug@4.4.0(supports-color@7.2.0)))
       nanoid:
-        specifier: 5.1.5
-        version: 5.1.5
+        specifier: 6.0.1
+        version: 6.0.1
       qs:
         specifier: 6.14.0
         version: 6.14.0
@@ -311,8 +311,8 @@ importers:
         specifier: 1.10.0
         version: 1.10.0
       nanoid:
-        specifier: 5.1.5
-        version: 5.1.5
+        specifier: 6.0.1
+        version: 6.0.1
     devDependencies:
       '@types/crypto-js':
         specifier: 4.2.2
@@ -1320,6 +1320,11 @@ packages:
 
   '@volar/typescript@2.4.13':
     resolution: {integrity: sha512-Ukz4xv84swJPupZeoFsQoeJEOm7U9pqsEnaGGgt5ni3SCTa22m8oJP5Nng3Wed7Uw5RBELdLxxORX8YhJPyOgQ==}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   '@vue/babel-helper-vue-transform-on@1.4.0':
     resolution: {integrity: sha512-mCokbouEQ/ocRce/FpKCRItGo+013tHg7tixg3DUNS+6bmIchPt66012kBMm476vyEIJPafrvOf4E5OYj3shSw==}
@@ -1786,6 +1791,7 @@ packages:
 
   crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    deprecated: Active development of CryptoJS has been discontinued. This library is no longer maintained.
 
   css-render@0.15.14:
     resolution: {integrity: sha512-9nF4PdUle+5ta4W5SyZdLCCmFd37uVimSjg1evcTqKJCyvCEEj12WKzOSBNak6r4im4J4iYXKH1OWpUV5LBYFg==}
@@ -3177,9 +3183,9 @@ packages:
     engines: {node: ^18 || >=20}
     hasBin: true
 
-  nanoid@5.1.5:
-    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
-    engines: {node: ^18 || >=20}
+  nanoid@6.0.1:
+    resolution: {integrity: sha512-3wVS3i51pE2pi1k5FFL/95BGfVS0kSsvDVuGXHOtxox/TywUmtgq+3qiTOTbs9J7KfHaXPiN171k/A6dBnaXFw==}
+    engines: {node: ^22 || ^24 || >=26}
     hasBin: true
 
   nanomatch@1.2.13:
@@ -5469,11 +5475,13 @@ snapshots:
 
   '@volar/source-map@2.4.13': {}
 
-  '@volar/typescript@2.4.13':
+  '@volar/typescript@2.4.13(typescript@5.8.3)':
     dependencies:
       '@volar/language-core': 2.4.13
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
+    optionalDependencies:
+      typescript: 5.8.3
 
   '@vue/babel-helper-vue-transform-on@1.4.0': {}
 
@@ -7640,7 +7648,7 @@ snapshots:
 
   nanoid@5.1.16: {}
 
-  nanoid@5.1.5: {}
+  nanoid@6.0.1: {}
 
   nanomatch@1.2.13(supports-color@7.2.0):
     dependencies:
@@ -8937,7 +8945,7 @@ snapshots:
 
   vue-tsc@2.2.10(typescript@5.8.3):
     dependencies:
-      '@volar/typescript': 2.4.13
+      '@volar/typescript': 2.4.13(typescript@5.8.3)
       '@vue/language-core': 2.2.10(typescript@5.8.3)
       typescript: 5.8.3
 
