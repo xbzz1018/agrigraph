@@ -36,6 +36,7 @@ conda run --no-capture-output -n AiJava python -m ruff check app tests migration
 conda run --no-capture-output -n AiJava python -m pytest tests
 Pop-Location
 Push-Location frontend
+pnpm test:request
 pnpm typecheck
 pnpm build
 Pop-Location

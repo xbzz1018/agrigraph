@@ -27,6 +27,7 @@
     "lint": "eslint . --fix",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
+    "test:request": "tsx --test packages/axios/tests/request-cancellation.test.ts",
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
