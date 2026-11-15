@@ -79,6 +79,9 @@ jobs:
       - name: Test SSE chunk boundaries
         run: pnpm test:sse
 
+      - name: Test Markdown rendering safety
+        run: pnpm test:markdown
+
       - name: Type-check frontend
         run: pnpm typecheck
 

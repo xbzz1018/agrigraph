@@ -29,6 +29,7 @@
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "test:request": "tsx --test packages/axios/tests/request-cancellation.test.ts",
     "test:sse": "tsx --test tests/sse-stream.test.ts",
+    "test:markdown": "tsx --test tests/markdown.test.ts",
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {

@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import MarkdownIt from 'markdown-it';
+import { renderMarkdown } from '@/utils/markdown';
 
 defineOptions({ name: 'SafeMarkdown' });
 
 const props = defineProps<{ content?: string }>();
 
-const markdown = new MarkdownIt({
-  html: false,
-  linkify: true,
-  breaks: true
-});
-
-const renderedContent = computed(() => markdown.render(props.content ?? ''));
+const renderedContent = computed(() => renderMarkdown(props.content));
 </script>
 
 <template>
