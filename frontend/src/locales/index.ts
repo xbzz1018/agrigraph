@@ -1,14 +1,8 @@
 import type { App } from 'vue';
-import { createI18n } from 'vue-i18n';
 import { localStg } from '@/utils/storage';
-import messages from './locale';
+import { createAppI18n } from './i18n';
 
-const i18n = createI18n({
-  locale: localStg.get('lang') || 'zh-CN',
-  fallbackLocale: 'en',
-  messages,
-  legacy: false
-});
+const i18n = createAppI18n(localStg.get('lang') || 'zh-CN');
 
 /**
  * Setup plugin i18n
