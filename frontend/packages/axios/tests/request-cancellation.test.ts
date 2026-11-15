@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { CanceledError } from 'axios';
 import type { AxiosAdapter, InternalAxiosRequestConfig } from 'axios';
-import { REQUEST_ID_KEY, createRequest } from '../src/index';
+import { BACKEND_ERROR_CODE, REQUEST_ID_KEY, createFlatRequest, createRequest } from '../src/index';
 
 function pendingAdapter() {
   let resolveStarted!: (config: InternalAxiosRequestConfig) => void;
@@ -68,4 +68,42 @@ test('cancelAllRequest preserves caller-owned cancellation signals', async () =>
     pending.stop();
     await result;
   }
+});
+
+test('refreshes the token before exposing transformed response data', async () => {
+  const events: string[] = [];
+  const request = createRequest(undefined, {
+    onTokenRefresh: async token => { events.push(`token:${token}`); },
+    transformBackendResponse: response => {
+      events.push('response');
+      return response.data.payload;
+    }
+  });
+  const data = await request({
+    url: '/success',
+    adapter: async config => ({
+      config, data: { payload: 'answer' }, status: 200, statusText: 'OK',
+      headers: { 'new-token': 'refreshed' }
+    })
+  });
+  assert.equal(data, 'answer');
+  assert.deepEqual(events, ['token:refreshed', 'response']);
+});
+
+test('flat requests retain the backend error and response for callers', async () => {
+  const errors: string[] = [];
+  const request = createFlatRequest(undefined, {
+    isBackendSuccess: () => false,
+    onError: error => { errors.push(error.code || ''); }
+  });
+  const result = await request({
+    url: '/rejected',
+    adapter: async config => ({
+      config, data: { code: 'REJECTED' }, status: 200, statusText: 'OK', headers: {}
+    })
+  });
+  assert.equal(result.data, null);
+  assert.equal(result.error?.code, BACKEND_ERROR_CODE);
+  assert.deepEqual(result.response?.data, { code: 'REJECTED' });
+  assert.deepEqual(errors, [BACKEND_ERROR_CODE]);
 });
