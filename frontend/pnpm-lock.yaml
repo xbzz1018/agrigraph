@@ -220,8 +220,8 @@ importers:
         specifier: 4.5.0
         version: 4.5.0(axios@1.9.0(debug@4.4.0(supports-color@7.2.0)))
       nanoid:
-        specifier: 5.1.5
-        version: 5.1.5
+        specifier: 5.1.16
+        version: 5.1.16
       qs:
         specifier: 6.16.1
         version: 6.16.1
@@ -311,8 +311,8 @@ importers:
         specifier: 1.10.0
         version: 1.10.0
       nanoid:
-        specifier: 5.1.5
-        version: 5.1.5
+        specifier: 5.1.16
+        version: 5.1.16
     devDependencies:
       '@types/crypto-js':
         specifier: 4.2.2
@@ -3178,11 +3178,6 @@ packages:
 
   nanoid@5.1.16:
     resolution: {integrity: sha512-kVrnsrJqMR8+oLJnGEmSWw9BivK5mt7H3FZatVRjrc5wGqFYuBxX1yG7+A7Gi5AefkX6t/oCkizcQgpu0cY1dQ==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
-  nanoid@5.1.5:
-    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
     engines: {node: ^18 || >=20}
     hasBin: true
 
@@ -7661,8 +7656,6 @@ snapshots:
   nanoid@3.3.15: {}
 
   nanoid@5.1.16: {}
-
-  nanoid@5.1.5: {}
 
   nanomatch@1.2.13(supports-color@7.2.0):
     dependencies:
