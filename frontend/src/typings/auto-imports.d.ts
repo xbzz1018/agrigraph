@@ -114,6 +114,7 @@ declare global {
   const readJsonSse: typeof import('../utils/sse-stream')['readJsonSse']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
+  const renderMarkdown: typeof import('../utils/markdown')['renderMarkdown']
   const request: typeof import('@/service/request')['request']
   const resetCacheStrategyOptions: typeof import('../constants/app')['resetCacheStrategyOptions']
   const resetCacheStrategyRecord: typeof import('../constants/app')['resetCacheStrategyRecord']

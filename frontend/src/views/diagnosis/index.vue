@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UploadFileInfo } from 'naive-ui';
-import MarkdownIt from 'markdown-it';
+import { renderMarkdown } from '@/utils/markdown';
 
 interface DiagnosisResult {
   answer: string;
@@ -18,7 +18,6 @@ const preview = ref('');
 const loading = ref(false);
 const result = ref<DiagnosisResult | null>(null);
 const router = useRouter();
-const markdown = new MarkdownIt({ html: false, breaks: true });
 const serviceBase = String(import.meta.env.VITE_SERVICE_BASE_URL || '').replace(/\/$/, '');
 
 function mediaUrl(url: string) {
@@ -62,7 +61,7 @@ function askWithSymptoms() {
   });
 }
 
-const renderedAnswer = computed(() => markdown.render(result.value?.answer || ''));
+const renderedAnswer = computed(() => renderMarkdown(result.value?.answer, false));
 </script>
 
 <template>

@@ -32,7 +32,7 @@ conda run --no-capture-output -n AiJava python scripts/demo/run-evidence-case.py
 
 ## 启动真实服务
 
-需要已有 Conda `AiJava`（Python 3.10）、Node.js、pnpm 和 Docker。前端依赖要求 Node.js 18.20+，CI 使用 Node.js 20 / pnpm 9.15.9。使用外部兼容 API 配置文本、视觉和可选重排能力。
+需要已有 Conda `AiJava`（Python 3.10）、Node.js、pnpm 和 Docker。前端依赖要求 Node.js 22+，CI 使用 Node.js 22 / pnpm 9.15.9；Vue I18n 11.4 的安全更新已不再支持 Node.js 18 / 20。使用外部兼容 API 配置文本、视觉和可选重排能力。
 
 ```powershell
 # 先按运行手册配置本机模型与公开数据路径
