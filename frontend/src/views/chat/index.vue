@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MarkdownIt from 'markdown-it';
+import { renderMarkdown } from '@/utils/markdown';
 import { useFullscreen } from '@vueuse/core';
 import GlobalSearch from '@/layouts/modules/global-search/index.vue';
 import UserAvatar from '@/layouts/modules/global-header/components/user-avatar.vue';
@@ -28,7 +28,6 @@ const historyKeyword = ref('');
 const question = ref('');
 const cropScope = ref(localStorage.getItem('agrigraph-default-crop') || 'AUTO');
 const route = useRoute();
-const markdown = new MarkdownIt({ html: false, linkify: true, breaks: true });
 const appStore = useAppStore();
 const themeStore = useThemeStore();
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen();
@@ -206,7 +205,7 @@ function processedContent(message: ChatMessage) {
 }
 
 function renderedContent(message: ChatMessage) {
-  return markdown.render(processedContent(message));
+  return renderMarkdown(processedContent(message));
 }
 
 function handleKeydown(event: KeyboardEvent) {

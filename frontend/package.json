@@ -29,6 +29,7 @@
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "test:request": "tsx --test packages/axios/tests/request-cancellation.test.ts",
     "test:sse": "tsx --test tests/sse-stream.test.ts",
+    "test:markdown": "tsx --test tests/markdown.test.ts",
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
@@ -48,7 +49,7 @@
     "github-markdown-css": "^5.8.1",
     "highlight.js": "^11.11.1",
     "json5": "2.2.3",
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.3.3",
     "markdown-it-link-attributes": "^4.0.1",
     "naive-ui": "2.41.0",
     "nprogress": "0.2.0",
