@@ -1,64 +1,68 @@
 # AgriGraph Evidence QA
 
-面向番茄与水稻病虫害的多模态知识问答：从文字或图片症状查找候选知识，用图谱补充关系，再生成带引用的回答。
+用文字或图片查找番茄、水稻病虫害知识。AgriGraph 将症状描述、资料检索和知识图谱连接起来，生成回答并记录依据，支持继续追问和关系查询。
 
-[项目案例](docs/project-case.md) · [离线运行结果](examples/evidence-case/result.json) · [本地启动](docs/runbook.md) · [验证与限制](docs/acceptance/public-verification.md)
+[运行指南](docs/runbook.md) · [离线案例](examples/evidence-case/README.md) · [系统架构](docs/architecture.md)
 
-## 一次问答如何完成
+## 可以怎么用
+
+| 入口 | 操作示例 | 查看什么 |
+| --- | --- | --- |
+| 农业问答 | 选择番茄，提问“番茄灰霉病的发生条件是什么？” | 知识库回答和处理过程，可在当前会话继续追问 |
+| 图片症状理解 | 上传作物图片，提取部位和可见症状 | 候选病虫害与知识库回答，也可携带症状进入问答 |
+| 知识图谱 | 查找一个病虫害名称，展开关联节点 | 症状、病原、发生环境和防治关系，支持实体间路径查询 |
+
+## 回答从哪里来
 
 ```mermaid
 flowchart LR
-    A[文字或图片症状] --> B[结构化查询]
-    B --> C[BM25 候选与条件重排]
-    C --> D[Neo4j 关系证据]
-    D --> E[回答与 Claim 引用核验]
-    E --> F[防治信息边界检查]
+    A["文字问题 / 图片症状"] --> B["结构化查询"]
+    B --> C["资料检索 + 图谱关系"]
+    C --> D["生成回答与核对引用"]
 ```
 
-- 文字和图片共用知识链路；视觉模型只提取作物、部位与可见症状。
-- Elasticsearch 召回候选，症状与发生条件问题可使用外部 Reranker；Neo4j 补充症状、病原、发生条件和防治关系。
-- 回答中的 Claim 关联证据 ID；缺少支持的陈述会被移除。该检查使用确定性规则，仍需要人工复核。
-- SSE 与最终结果报告实际检索模式和重排降级原因；会话记忆帮助理解追问，不作为事实依据。
+文字与图片共用检索流程：图片先提取作物、部位和可见症状，Elasticsearch 查找候选资料，Neo4j 补充关系，LangGraph 编排检索、生成和引用核验。症状与发生条件问题可配置 Reranker 调整候选顺序。
 
-## 不配置模型也能检查的案例
+回答结果中保留陈述与证据 ID 的对应关系，核验后移除缺少支持的陈述。运行轨迹记录节点执行、检索模式和工具调用，便于检查一次回答是如何得到的。
+
+## 先试一个离线案例
+
+在已安装[后端依赖](docs/runbook.md#安装依赖)的 Conda `AiJava` 环境中，从仓库根目录运行：
 
 ```powershell
 conda run --no-capture-output -n AiJava python scripts/demo/run-evidence-case.py
 ```
 
-案例使用合成症状、候选资料和离线服务替身，实际执行本仓库的 LangGraph、工具封装、引用核验和 SSE 转换。它覆盖 BM25、重排成功、重排失败、重排空结果和无证据五条路径，不连接数据库服务或付费模型。
+案例问题是“番茄叶片出现褐色斑点，应如何查找依据？”。脚本使用合成资料和模拟服务，无需 API Key 或 Docker，输出完整 JSON，可检查 `claims`、`citations`、`graphRelations` 和检索事件。
 
-完整输入、运行结果及源码摘要见 [examples/evidence-case](examples/evidence-case/README.md)。真实模型与真实知识库的验收另见[验证记录](docs/acceptance/public-verification.md)。
+输入和结果见[案例说明](examples/evidence-case/README.md)与 [result.json](examples/evidence-case/result.json)。
 
-## 启动真实服务
+## 启动应用
 
-需要已有 Conda `AiJava`（Python 3.10）、Node.js、pnpm 和 Docker。前端依赖要求 Node.js 22+，CI 使用 Node.js 22 / pnpm 9.15.9；Vue I18n 11.4 的安全更新已不再支持 Node.js 18 / 20。使用外部兼容 API 配置文本、视觉和可选重排能力。
+准备 Conda `AiJava`（Python 3.10）、Node.js 22+、pnpm 9.15.9 和 Docker。先获取项目：
 
 ```powershell
-# 先按运行手册配置本机模型与公开数据路径
-powershell -ExecutionPolicy Bypass -File scripts/dev/start-acceptance-dependencies.ps1
+git clone https://github.com/xbzz1018/agrigraph.git
+cd agrigraph
+```
+
+按[运行指南](docs/runbook.md)安装依赖、配置模型、启动依赖服务并导入公开知识数据。完成后，在仓库根目录启动应用：
+
+```powershell
 .\start-windows.bat
 ```
 
-前端 `http://127.0.0.1:9627`，API `http://127.0.0.1:8188`。依赖包括 Elasticsearch、Neo4j、PostgreSQL 和 Redis；用户与运行审计使用 SQLite。安装、数据导入、模型配置和检查命令见[运行手册](docs/runbook.md)。
+打开 <http://127.0.0.1:9627>，首次使用先注册账号，登录后进入「农业问答」，选择番茄或水稻，发送一个症状或发生条件问题。图片入口需要配置视觉模型。API 地址为 <http://127.0.0.1:8188>；停止应用使用 `stop-windows.bat`。
 
-## 验证状态
+## 开发与数据
 
-| 材料 | 能说明什么 |
+| 内容 | 入口 |
 | --- | --- |
-| 后端回归、前端类型检查与构建 | 工作流规则、接口契约与构建可检查 |
-| 五条离线案例 | 证据传递、无来源陈述过滤、检索模式与降级行为 |
-| [历史候选摘要](docs/acceptance/historical-candidate.json) | 本地旧快照的文本、图片、防治三组记录；无 Git commit，不代表当前版本成绩 |
+| 工作流与组件职责 | [系统架构](docs/architecture.md) |
+| 项目实现与设计取舍 | [项目案例](docs/project-case.md) |
+| 公开数据整理与图谱导入 | [脚本目录](scripts/README.md) |
+| 评测数据与指标 | [评测说明](docs/evaluation/rag-evaluation.md) |
 
-真实模型、完整数据栈与当前源码的联合验收仍需单独执行。历史图片症状覆盖率为 12.78%，保留为已知弱项；不将候选召回率等同于诊断准确率。
+技术栈：Vue 3、FastAPI、LangGraph、Elasticsearch、Neo4j；SQLite 保存用户、会话与运行记录，Redis 和 PostgreSQL 支持会话记忆。
 
-## 继续阅读
-
-| 想了解什么 | 入口 |
-| --- | --- |
-| 业务问题、个人工作与工程取舍 | [项目案例](docs/project-case.md) |
-| 组件职责、记忆与证据边界 | [系统架构](docs/architecture.md) |
-| 数据划分、指标与失败条件 | [评测说明](docs/evaluation/rag-evaluation.md) |
-| 检索契约及已解决的问题 | [问题与修复](docs/acceptance/issues-and-fixes.md) |
-
-本项目使用公开资料独立完成脱敏工程实现，不包含客户或内部数据。图片只提供症状观察和候选解释；涉及农药用量、浓度、混配、频次等具体用法时，返回登记标签与农技人员提示。
+[MIT License](LICENSE) · [第三方来源](THIRD_PARTY_NOTICES.md)
