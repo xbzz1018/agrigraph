@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
   <DarkModeContainer class="h-full flex-center">
-    <span>AgriGraph 智农图谱 · 基于 PaiSmart（MIT License）改造</span>
+    <span>AgriGraph 智农图谱</span>
   </DarkModeContainer>
 </template>
 

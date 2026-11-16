@@ -65,4 +65,4 @@ cd agrigraph
 
 技术栈：Vue 3、FastAPI、LangGraph、Elasticsearch、Neo4j；SQLite 保存用户、会话与运行记录，Redis 和 PostgreSQL 支持会话记忆。
 
-[MIT License](LICENSE) · [第三方来源](THIRD_PARTY_NOTICES.md)
+[Apache-2.0 License](LICENSE)
