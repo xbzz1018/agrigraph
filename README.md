@@ -4,6 +4,14 @@
 
 [运行指南](docs/runbook.md) · [离线案例](examples/evidence-case/README.md) · [系统架构](docs/architecture.md)
 
+<!-- portfolio-preview:start -->
+[浏览项目与交互示例](https://kukup.xbzz.cloud/projects/agrigraph)
+
+![项目首页与功能入口](https://kukup.xbzz.cloud/images/agrigraph-home.webp?v=e8b9107d578e)
+
+<sub>项目首页 · 示例资料与展示配色。点击上方链接，从首页继续浏览各项功能。</sub>
+<!-- portfolio-preview:end -->
+
 ## 可以怎么用
 
 | 入口 | 操作示例 | 查看什么 |
