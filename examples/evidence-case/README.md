@@ -8,10 +8,14 @@
 
 ```powershell
 conda run --no-capture-output -n AiJava python scripts/demo/run-evidence-case.py
-# 需要更新本文件夹的结果时显式指定输出
-conda run --no-capture-output -n AiJava python scripts/demo/run-evidence-case.py `
-  --output examples/evidence-case/result.json
+# 将本次输出保存到临时目录，方便检查 JSON
+$report = Join-Path ([IO.Path]::GetTempPath()) 'agrigraph-evidence-case.json'
+conda run --no-capture-output -n AiJava python scripts/demo/run-evidence-case.py --output $report
+$case = Get-Content -LiteralPath $report -Raw -Encoding UTF8 | ConvertFrom-Json
+$case.scenarios | Select-Object scenario, @{Name='mode'; Expression={$_.result.retrieval.mode}}
 ```
+
+`--output` 指向已存在的文件时会覆盖该文件。仓库中的 `result.json` 可用来对照下面的五种场景。
 
 | 场景 | 实际 mode | degraded | 原因 |
 | --- | --- | --- | --- |
