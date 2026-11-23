@@ -14,9 +14,9 @@
     "axios": "1.21.1",
     "axios-retry": "4.5.0",
     "nanoid": "5.1.16",
-    "qs": "6.16.1"
+    "qs": "6.17.1"
   },
   "devDependencies": {
-    "@types/qs": "6.9.18"
+    "@types/qs": "6.15.1"
   }
 }
