@@ -18,7 +18,7 @@ pnpm install --frozen-lockfile
 Pop-Location
 ```
 
-只体验离线案例时，安装后端依赖即可，无需启动 Docker 或配置模型。
+只体验离线案例时，执行上方的后端依赖安装步骤，然后按[离线案例](../examples/evidence-case/README.md)运行脚本。该案例无需安装前端、启动 Docker 或配置模型。
 
 ## 配置模型
 
